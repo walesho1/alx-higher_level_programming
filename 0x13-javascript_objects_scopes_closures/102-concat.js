@@ -1,22 +1,9 @@
 #!/usr/bin/node
-const fs = require('fs');
-
-const fileA = process.argv[2];
-const fileB = process.argv[3];
-const fileC = process.argv[4];
-
-if (
-  fs.existsSync(fileA) &&
-fs.statSync(fileA).isFile &&
-fs.existsSync(fileB) &&
-fs.statSync(fileB).isFile &&
-fileC !== undefined
-) {
-  const fileAContent = fs.readFileSync(fileA);
-  const fileBContent = fs.readFileSync(fileB);
-  const stream = fs.createWriteStream(fileC);
-
-  stream.write(fileAContent);
-  stream.write(fileBContent);
-  stream.end();
-}
+const argv = process.argv;
+const file = require('fs');
+const fileA = argv[2];
+const textA = file.readFileSync(fileA, 'utf8');
+const fileB = argv[3];
+const textB = file.readFileSync(fileB, 'utf8');
+const fileC = argv[4];
+file.writeFileSync(fileC, textA + textB);
