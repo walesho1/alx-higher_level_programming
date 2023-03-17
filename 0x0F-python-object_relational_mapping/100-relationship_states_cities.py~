@@ -21,6 +21,7 @@ if __name__ == '__main__':
     engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'
                            .format(username, password, data))
     # create custom session object class from database engine
+    #Base.metadata.create_all(engine)
     Session = sessionmaker(bind=engine)
     # create instance of new custom session class
     session = Session()
